@@ -7,7 +7,7 @@ import json
 import os
 from datetime import datetime, timedelta
 
-from azure.cli.testsdk import CliTestError, ResourceGroupPreparer
+from azure.cli.testsdk import CliTestError, ResourceGroupPreparer, MockCli
 from azure.cli.testsdk.preparers import AbstractPreparer, SingleValueReplacer
 from azure.cli.testsdk.base import execute
 
@@ -18,8 +18,7 @@ class VaultPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group',
                  dev_setting_name='AZURE_CLI_TEST_DEV_BACKUP_ACCT_NAME'):
         super(VaultPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        self.cli_ctx = MockCli()
         self.parameter_name = parameter_name
         self.resource_group = None
         self.resource_group_parameter_name = resource_group_parameter_name
@@ -76,8 +75,7 @@ class VMPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_location_parameter_name='resource_group_location',
                  resource_group_parameter_name='resource_group', dev_setting_name='AZURE_CLI_TEST_DEV_BACKUP_VM_NAME'):
         super(VMPreparer, self).__init__(name_prefix, 15)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        self.cli_ctx = MockCli()
         self.parameter_name = parameter_name
         self.resource_group = None
         self.resource_group_parameter_name = resource_group_parameter_name
@@ -126,8 +124,7 @@ class ItemPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group',
                  dev_setting_name='AZURE_CLI_TEST_DEV_BACKUP_ITEM_NAME'):
         super(ItemPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        self.cli_ctx = MockCli()
         self.parameter_name = parameter_name
         self.vm_parameter_name = vm_parameter_name
         self.resource_group = None
@@ -184,8 +181,7 @@ class PolicyPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group',
                  dev_setting_name='AZURE_CLI_TEST_DEV_BACKUP_POLICY_NAME'):
         super(PolicyPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        self.cli_ctx = MockCli()
         self.parameter_name = parameter_name
         self.resource_group = None
         self.resource_group_parameter_name = resource_group_parameter_name
@@ -237,8 +233,7 @@ class RPPreparer(AbstractPreparer, SingleValueReplacer):
                  vault_parameter_name='vault_name',
                  resource_group_parameter_name='resource_group', dev_setting_name='AZURE_CLI_TEST_DEV_BACKUP_RP_NAME'):
         super(RPPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        self.cli_ctx = MockCli()
         self.parameter_name = parameter_name
         self.vm_parameter_name = vm_parameter_name
         self.resource_group = None

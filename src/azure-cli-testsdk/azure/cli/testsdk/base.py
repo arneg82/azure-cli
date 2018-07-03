@@ -73,8 +73,8 @@ class CheckerMixin(object):
 class ScenarioTest(ReplayableTest, CheckerMixin, unittest.TestCase):
     def __init__(self, method_name, config_file=None, recording_name=None,
                  recording_processors=None, replay_processors=None, recording_patches=None, replay_patches=None):
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.name_replacer = GeneralNameReplacer()
         self.kwargs = {}
         self.test_guid_count = 0
@@ -167,8 +167,8 @@ class LiveScenarioTest(IntegrationTestBase, CheckerMixin, unittest.TestCase):
 
     def __init__(self, method_name):
         super(LiveScenarioTest, self).__init__(method_name)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.kwargs = {}
 
     def cmd(self, command, checks=None, expect_failure=False):

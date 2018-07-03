@@ -8,7 +8,7 @@ import os
 import mock
 
 from knack.util import CLIError
-from azure.cli.testsdk import TestCli
+from azure.cli.testsdk import MockCli
 from azure.cli.testsdk import (
     ScenarioTest, ResourceGroupPreparer, LiveScenarioTest)
 from .batch_preparers import BatchAccountPreparer, BatchScenarioMixin

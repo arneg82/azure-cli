@@ -22,8 +22,7 @@ __all__ = ['ScenarioTest', 'LiveScenarioTest', 'ResourceGroupPreparer', 'Storage
            'JMESPathCheckGreaterThan', 'api_version_constraint', 'get_active_api_profile', 'create_random_name']
 
 
-class TestCli(AzCli):
-
+class MockCli(AzCli):
     def __init__(self, commands_loader_cls=None, **kwargs):
         import os
 
@@ -37,7 +36,7 @@ class TestCli(AzCli):
 
         from knack.completion import ARGCOMPLETE_ENV_NAME
 
-        super(TestCli, self).__init__(
+        super(MockCli, self).__init__(
             cli_name='az',
             config_dir=GLOBAL_CONFIG_DIR,
             config_env_var_prefix=ENV_VAR_PREFIX,

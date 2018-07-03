@@ -22,8 +22,8 @@ class ResourceGroupPreparer(AbstractPreparer, SingleValueReplacer):
                  dev_setting_location='AZURE_CLI_TEST_DEV_RESOURCE_GROUP_LOCATION',
                  random_name_length=75, key='rg'):
         super(ResourceGroupPreparer, self).__init__(name_prefix, random_name_length)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.location = location
         self.parameter_name = parameter_name
         self.parameter_name_for_location = parameter_name_for_location
@@ -60,8 +60,8 @@ class StorageAccountPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group', skip_delete=True,
                  dev_setting_name='AZURE_CLI_TEST_DEV_STORAGE_ACCOUNT_NAME', key='sa'):
         super(StorageAccountPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.location = location
         self.sku = sku
         self.resource_group_parameter_name = resource_group_parameter_name
@@ -106,8 +106,8 @@ class KeyVaultPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group', skip_delete=True,
                  dev_setting_name='AZURE_CLI_TEST_DEV_KEY_VAULT_NAME', key='kv'):
         super(KeyVaultPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.location = location
         self.sku = sku
         self.resource_group_parameter_name = resource_group_parameter_name
@@ -149,8 +149,8 @@ class RoleBasedServicePrincipalPreparer(AbstractPreparer, SingleValueReplacer):
                  dev_setting_sp_name='AZURE_CLI_TEST_DEV_SP_NAME',
                  dev_setting_sp_password='AZURE_CLI_TEST_DEV_SP_PASSWORD', key='sp'):
         super(RoleBasedServicePrincipalPreparer, self).__init__(name_prefix, 24)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.skip_assignment = skip_assignment
         self.result = {}
         self.parameter_name = parameter_name

@@ -32,8 +32,8 @@ class ServerPreparer(AbstractPreparer, SingleValueReplacer):
                  resource_group_parameter_name='resource_group', skip_delete=True,
                  sku_name='GP_Gen5_2'):
         super(ServerPreparer, self).__init__(name_prefix, SERVER_NAME_MAX_LENGTH)
-        from azure.cli.testsdk import TestCli
-        self.cli_ctx = TestCli()
+        from azure.cli.testsdk import MockCli
+        self.cli_ctx = MockCli()
         self.engine_type = engine_type
         self.engine_parameter_name = engine_parameter_name
         self.location = location

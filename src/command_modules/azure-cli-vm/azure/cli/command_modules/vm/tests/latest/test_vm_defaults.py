@@ -26,10 +26,10 @@ from azure.cli.command_modules.vm._validators import (_validate_vm_vmss_create_v
 
 
 def _get_test_cmd():
-    from azure.cli.testsdk import TestCli
+    from azure.cli.testsdk import MockCli
     from azure.cli.core import AzCommandsLoader
     from azure.cli.core.commands import AzCliCommand
-    cli_ctx = TestCli()
+    cli_ctx = MockCli()
     loader = AzCommandsLoader(cli_ctx, resource_type=ResourceType.MGMT_COMPUTE)
     cmd = AzCliCommand(loader, 'test', None)
     cmd.command_kwargs = {'resource_type': ResourceType.MGMT_COMPUTE}

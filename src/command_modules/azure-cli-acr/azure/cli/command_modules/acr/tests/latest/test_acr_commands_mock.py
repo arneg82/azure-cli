@@ -26,7 +26,7 @@ from azure.cli.command_modules.acr._docker_utils import (
     get_login_credentials,
     get_access_credentials
 )
-from azure.cli.testsdk import TestCli
+from azure.cli.testsdk import MockCli
 
 
 class AcrMockCommandsTests(unittest.TestCase):
@@ -35,7 +35,7 @@ class AcrMockCommandsTests(unittest.TestCase):
     @mock.patch('requests.get', autospec=True)
     def test_repository_list(self, mock_requests_get, mock_get_access_credentials):
         cmd = mock.MagicMock()
-        cmd.cli_ctx = TestCli()
+        cmd.cli_ctx = MockCli()
         encoded_repositories = json.dumps({'repositories': ['testrepo1', 'testrepo2']}).encode()
 
         response = mock.MagicMock()
@@ -72,7 +72,7 @@ class AcrMockCommandsTests(unittest.TestCase):
     @mock.patch('requests.get', autospec=True)
     def test_repository_show_tags(self, mock_requests_get, mock_get_access_credentials):
         cmd = mock.MagicMock()
-        cmd.cli_ctx = TestCli()
+        cmd.cli_ctx = MockCli()
         encoded_tags = json.dumps({'tags': ['testtag1', 'testtag2']}).encode()
 
         response = mock.MagicMock()
@@ -96,7 +96,7 @@ class AcrMockCommandsTests(unittest.TestCase):
     @mock.patch('requests.get', autospec=True)
     def test_repository_show_manifests(self, mock_requests_get, mock_get_access_credentials):
         cmd = mock.MagicMock()
-        cmd.cli_ctx = TestCli()
+        cmd.cli_ctx = MockCli()
         encoded_manifests = json.dumps({'manifests': [
             {
                 "digest": "sha256:b972dda797ef258a7ea5738eb2109778c2bac6a99d1033e6c9f9bdb4fbd196e7",
@@ -147,7 +147,7 @@ class AcrMockCommandsTests(unittest.TestCase):
     @mock.patch('requests.get', autospec=True)
     def test_repository_delete(self, mock_requests_get, mock_requests_delete, mock_get_access_credentials, mock_validate_managed_registry):
         cmd = mock.MagicMock()
-        cmd.cli_ctx = TestCli()
+        cmd.cli_ctx = MockCli()
 
         get_response = mock.MagicMock()
         get_response.headers = {
@@ -242,7 +242,7 @@ class AcrMockCommandsTests(unittest.TestCase):
     @mock.patch('requests.get', autospec=True)
     def test_get_docker_credentials(self, mock_requests_get, mock_requests_post, mock_get_registry_by_name, mock_get_raw_token):
         cmd = mock.MagicMock()
-        cmd.cli_ctx = TestCli()
+        cmd.cli_ctx = MockCli()
 
         registry = Registry(location='westus', sku=Sku(name='Standard'))
         registry.login_server = 'testregistry.azurecr.io'

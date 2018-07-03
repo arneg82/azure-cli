@@ -8,17 +8,17 @@ import unittest
 import mock
 
 from azure.cli.core.cloud import CloudEndpointNotSetException
-from azure.cli.testsdk import TestCli
+from azure.cli.testsdk import MockCli
 
 from knack.util import CLIError
 
 
 def _get_test_cmd():
-    from azure.cli.testsdk import TestCli
+    from azure.cli.testsdk import MockCli
     from azure.cli.core import AzCommandsLoader
     from azure.cli.core.commands import AzCliCommand
     from azure.cli.core.profiles import ResourceType
-    cli_ctx = TestCli()
+    cli_ctx = MockCli()
     loader = AzCommandsLoader(cli_ctx, resource_type=ResourceType.MGMT_COMPUTE)
     cmd = AzCliCommand(loader, 'test', None)
     cmd.command_kwargs = {'resource_type': ResourceType.MGMT_COMPUTE}
@@ -64,7 +64,7 @@ class TestVMImage(unittest.TestCase):
         type(mock_cloud.endpoints).vm_image_alias_doc = p
         mock_get_active_cloud.return_value = mock_cloud
         # assert
-        cli_ctx = TestCli()
+        cli_ctx = MockCli()
         cli_ctx.cloud = mock_cloud
         with self.assertRaises(CLIError):
             load_images_from_aliases_doc(cli_ctx)

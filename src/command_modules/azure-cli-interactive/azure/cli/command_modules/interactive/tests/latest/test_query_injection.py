@@ -28,9 +28,9 @@ class QueryInjection(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(QueryInjection, self).__init__(*args, **kwargs)
         from azure.cli.command_modules.interactive.azclishell.app import AzInteractiveShell
-        from azure.cli.testsdk import TestCli
+        from azure.cli.testsdk import MockCli
         self.stream = six.StringIO()
-        self.shell = AzInteractiveShell(TestCli(), output_custom=self.stream)
+        self.shell = AzInteractiveShell(MockCli(), output_custom=self.stream)
         self.shell.cli_execute = self._mock_execute
         self.shell.last = MockValues()
 
